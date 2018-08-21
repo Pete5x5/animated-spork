@@ -59,7 +59,7 @@ while True:
 
 totaltops = alltops
 ontop = 1
-toplist = ['a'] * alltops
+toplist = []
 
 while alltops > 0:
     print('Enter topping number' + str(ontop))
@@ -69,7 +69,7 @@ while alltops > 0:
             print('Topping name too long')
             continue
         else:
-            toplist[ontop-1] = currtop
+            toplist = toplist + [currtop]
             break
     ontop = ontop + 1
     alltops = alltops - 1
