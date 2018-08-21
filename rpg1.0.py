@@ -62,11 +62,14 @@ ontop = 1
 toplist = []
 
 while alltops > 0:
-    print('Enter topping number' + str(ontop))
+    print('Enter topping number ' + str(ontop))
     while True:
         currtop = input()
         if len(currtop) > 50:
             print('Topping name too long')
+            continue
+        elif currtop in toplist:
+            print('You already have that topping')
             continue
         else:
             toplist = toplist + [currtop]
