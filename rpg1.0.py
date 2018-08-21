@@ -1,10 +1,8 @@
 import random
-print('RANDOM PIZZA GENERATOR 1.0')
-print('As the dice will it, it shall be done')
-print('')
-tops = 0
-pizzas = 0
-print('How many pizzas would you like generated?')
+print('''RANDOM PIZZA GENERATOR 1.0
+As the dice will it, it shall be done
+
+How many pizzas would you like generated?''')
 
 while True:
     pizzas = input()
@@ -23,8 +21,6 @@ while True:
         else:
             break
         
-
-
 print('How many toppings are there per pizza?')
 while True:
     tops = input()
@@ -39,7 +35,7 @@ while True:
             continue
         elif tops > 12:
             print('That\'s too many toppings!')
-            continue    
+            continue 
         else:
             break
 
@@ -57,7 +53,7 @@ while True:
             continue
         elif alltops > 99:
             print('That\'s too many toppings!')
-            continue    
+            continue 
         else:
             break
 
@@ -79,12 +75,10 @@ while alltops > 0:
     alltops = alltops - 1
 
 numtops = tops
-
 currpizza = 1
 
 while pizzas > 0:
-    print('')
-    print('Pizza #' + str(currpizza))
+    print('\nPizza #' + str(currpizza))
     while numtops > 0:
         print(toplist[random.randint(0,totaltops-1)])
         numtops = numtops - 1
