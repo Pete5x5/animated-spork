@@ -91,13 +91,17 @@ while alltops > 0:
 
 numtops = tops
 currpizza = 1
+allpizzas = []
 
 while pizzas > 0:
+    pizzagen = []
     print('\nPizza #' + str(currpizza))
     while numtops > 0:
-        print(toplist[random.randint(0,totaltops-1)])
+        pizzagen += [toplist[random.randint(0,totaltops-1)]]
         numtops -= 1
     numtops = tops
     currpizza += 1
     pizzas -= 1
+    for top in pizzagen:
+        print(top)
     
