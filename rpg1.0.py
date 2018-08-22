@@ -69,12 +69,10 @@ while True:
         print('Invalid choice')
         continue
 
-totaltops = alltops
-ontop = 1
 toplist = []
 
-while alltops > 0:
-    print('Enter topping number ' + str(ontop))
+for iv1 in range(alltops):
+    print('Enter topping number ' + str(iv1+1))
     while True:
         currtop = input()
         if len(currtop) > 50:
@@ -84,24 +82,16 @@ while alltops > 0:
             print('You already have that topping')
             continue
         else:
-            toplist = toplist + [currtop]
+            toplist += [currtop]
             break
-    ontop += 1
-    alltops -=  1
 
-numtops = tops
-currpizza = 1
 allpizzas = []
 
-while pizzas > 0:
+for iv2 in range(pizzas):
     pizzagen = []
-    print('\nPizza #' + str(currpizza))
-    while numtops > 0:
-        pizzagen += [toplist[random.randint(0,totaltops-1)]]
-        numtops -= 1
-    numtops = tops
-    currpizza += 1
-    pizzas -= 1
+    print('\nPizza #' + str(iv2+1))
+    for iv3 in range(tops):
+        pizzagen += [toplist[random.randint(0,alltops-1)]]
     for top in pizzagen:
         print(top)
     
