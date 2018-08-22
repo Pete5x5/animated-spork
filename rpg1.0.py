@@ -57,6 +57,18 @@ while True:
         else:
             break
 
+print('''Would you like to allow duplicate toppings?
+1 - Yes, that is how the dice will it
+2 - No, triple olives is gross\n''')
+
+while True:
+    dupetops = input()
+    if dupetops == '1' or dupetops == '2':
+        break
+    else:
+        print('Invalid choice')
+        continue
+
 totaltops = alltops
 ontop = 1
 toplist = []
@@ -74,8 +86,8 @@ while alltops > 0:
         else:
             toplist = toplist + [currtop]
             break
-    ontop = ontop + 1
-    alltops = alltops - 1
+    ontop += 1
+    alltops -=  1
 
 numtops = tops
 currpizza = 1
@@ -84,8 +96,8 @@ while pizzas > 0:
     print('\nPizza #' + str(currpizza))
     while numtops > 0:
         print(toplist[random.randint(0,totaltops-1)])
-        numtops = numtops - 1
+        numtops -= 1
     numtops = tops
-    currpizza = currpizza + 1
-    pizzas = pizzas - 1
+    currpizza += 1
+    pizzas -= 1
     
