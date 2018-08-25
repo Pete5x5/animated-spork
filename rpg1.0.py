@@ -89,9 +89,15 @@ allpizzas = []
 
 for iv2 in range(pizzas):
     pizzagen = []
+    selectedtops = 0
     print('\nPizza #' + str(iv2+1))
-    for iv3 in range(tops):
-        pizzagen += [toplist[random.randint(0,alltops-1)]]
+    while selectedtops < tops:
+        temptop = toplist[random.randint(0,alltops-1)]
+        if dupetops == '2' and temptop in pizzagen:
+            continue
+        else:
+            pizzagen += [temptop]
+            selectedtops += 1
+    allpizzas += [pizzagen]
     for top in pizzagen:
         print(top)
-    
