@@ -57,17 +57,20 @@ while True:
         else:
             break
 
-print('''Would you like to allow duplicate toppings?
-1 - Yes, that is how the dice will it
-2 - No, triple olives is gross\n''')
+if alltops >= tops:
+    print('''Would you like to allow duplicate toppings?
+    1 - Yes, that is how the dice will it
+    2 - No, triple olives is gross\n''')
 
-while True:
-    dupetops = input()
-    if dupetops == '1' or dupetops == '2':
-        break
-    else:
-        print('Invalid choice')
-        continue
+    while True:
+        dupetops = input()
+        if dupetops == '1' or dupetops == '2':
+            break
+        else:
+            print('Invalid choice')
+            continue
+else:
+    dupetops == '1'
 
 toplist = []
 
@@ -85,12 +88,62 @@ for iv1 in range(alltops):
             toplist += [currtop]
             break
 
+print('''Would you like to randomize the type of sauce for each pizza?
+1 - Yes, true random is the only way
+2 - No, I can only handle regular pizza sauce\n''')
+
+while True:
+    randsauce = input()
+    if randsauce == '1' or randsauce == '2':
+        break
+    else:
+        print('Invalid choice')
+        continue
+
+if randsauce == '1':
+    print('How many sauces are there to choose from?')
+while True:
+    allsauce = input()
+    try:
+         allsauce = int(allsauce)
+    except ValueError:
+        print('Invalid input')
+        continue
+    else:
+        if allsauce <= 1:
+            print('No need to randomize with only that many sauces to choose from')
+            randsauce = '2'
+            break
+        elif allsauce > 10:
+            print('That\'s too many sauces!')
+            continue 
+        else:
+            break
+
+if randsauce == '1':
+    saucelist = []
+    for iv12 in range(allsauce):
+        print('Enter sauce number ' + str(iv12+1))
+        while True:
+            currsauce = input()
+            if len(currsauce) > 50:
+                print('Sauce name too long')
+                continue
+            elif currsauce in saucelist:
+                print('You already have that sauce')
+                continue
+            else:
+                saucelist += [currsauce]
+                break
+
 allpizzas = []
 
 for iv2 in range(pizzas):
     pizzagen = []
     selectedtops = 0
     print('\nPizza #' + str(iv2+1))
+    if randsauce == '1':
+        print([sauce = ' + saucelist[random.randint(0,allsauce-1)] + ']')
     while selectedtops < tops:
         temptop = toplist[random.randint(0,alltops-1)]
         if dupetops == '2' and temptop in pizzagen:
