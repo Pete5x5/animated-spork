@@ -143,7 +143,7 @@ for iv2 in range(pizzas):
     selectedtops = 0
     print('\nPizza #' + str(iv2+1))
     if randsauce == '1':
-        print([sauce = ' + saucelist[random.randint(0,allsauce-1)] + ']')
+        print('[sauce = '  + saucelist[random.randint(0,allsauce-1)] + ']')
     while selectedtops < tops:
         temptop = toplist[random.randint(0,alltops-1)]
         if dupetops == '2' and temptop in pizzagen:
