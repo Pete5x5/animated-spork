@@ -1,107 +1,100 @@
-import random
-print('''RANDOM PIZZA GENERATOR 1.0
+import random   #Enable random number functionality
+print('''RANDOM PIZZA GENERATOR
 As the dice will it, it shall be done
 
 How many pizzas would you like generated?''')
 
-def intcheck(var1):
-    try:
-         var1 = int(var1)
-    except ValueError:
-        print('Invalid input')
-        continue
-
-while True:
+while True: #Get number of pizzas to be generated
     pizzas = input()
-    try:
+    try:    #Make sure input is an int
          pizzas = int(pizzas)
     except ValueError:
         print('Invalid input')
         continue
     else:
-        if pizzas < 1:
+        if pizzas < 1:  #Can't generate 0 pizzas..
             print('Not enough pizzas')
             continue
-        elif pizzas > 12:
+        elif pizzas > 12:   #Cap on number of pizzas
             print('That\'s too many pizzas!')
             continue
         else:
             break
         
 print('How many toppings are there per pizza?')
-while True:
+while True: #Get number of toppings per pizza
     tops = input()
-    try:
+    try:    #Make sure input is an int
          tops = int(tops)
     except ValueError:
         print('Invalid input')
         continue
     else:
-        if tops <= 1:
+        if tops <= 1:   #Can't have less than 1 topping
             print('Not enough toppings')
             continue
-        elif tops > 12:
+        elif tops > 12: #Cap on number of toppings
             print('That\'s too many toppings!')
             continue 
         else:
             break
 
 print('How many toppings are there to choose from?')
-while True:
+while True: #Get total number of toppings to choose from
     alltops = input()
-    try:
+    try:    #Make sure input is an int
          alltops = int(alltops)
     except ValueError:
         print('Invalid input')
         continue
     else:
-        if alltops <= 1:
+        if alltops <= 1:    #Can't have less than 1 topping
             print('Not enough toppings')
             continue
-        elif alltops > 99:
+        elif alltops > 99:  #Cap on number of toppings
             print('That\'s too many toppings!')
             continue 
         else:
             break
 
-toplist = []
+toplist = []    #Set the variable type to list
 
-def topname():
-    global toplist
+def topname():  #Function to get all possible toppings
+    global toplist #Use the global version of toplist (above)
     while True:
             currtop = input()
-            if len(currtop) > 50:
+            if len(currtop) > 50:   #Cap on number of characters in topping name
                 print('Topping name too long')
                 continue
-            elif currtop in toplist:
+            elif currtop in toplist:    #Check for duplicate toppings in list
                 print('You already have that topping')
                 continue
             else:
-                toplist += [currtop]
+                toplist += [currtop] #Add the topping to the list
                 break
 
-for iv1 in range(alltops):
-    print('Enter topping number ' + str(iv1+1))
-    topname()
+for iv1 in range(alltops): #User will enter all possible toppings
+    print('Enter topping number ' + str(iv1+1)) #Var starts counting at 0 so must add 1
+    topname()   #Function on line 62
 
 listcorrect = 0
 
-while listcorrect < 1:
+while listcorrect < 1:  #Check topping list
     print ("\nIs this topping list correct?")
     for iv112 in range(len(toplist)):
-        print (str(iv112+1) + " - " + str(toplist[iv112]))
+        print (str(iv112+1) + " - " + str(toplist[iv112]))  #Print the topping list to be checked
     print('''
     a - Yes, that's perfect
     b - I need to add a topping
     c - I need to remove a topping\n''')
     while True:
         listconfirm = input()
-        if listconfirm == 'a':
+        if listconfirm == 'a':  #List is OK, move on
             listcorrect == 1
             break
-        elif listconfirm == 'b':
+        elif listconfirm == 'b':  #Get additional topping
             print('Please enter the additional topping now:')
-            topname()
+            topname()   #Function on line 62
             break
         elif listconfirm == 'c':
             removetop = 0
@@ -187,7 +180,7 @@ if randsauce == 'a':
                 saucelist += [currsauce]
                 break
 
-allpizzas = []
+allpizzas = []  #For later use (saving generated pizzas to file)
 
 for iv2 in range(pizzas):
     pizzagen = []
@@ -202,6 +195,6 @@ for iv2 in range(pizzas):
         else:
             pizzagen += [temptop]
             selectedtops += 1
-    allpizzas += [pizzagen]
+    allpizzas += [pizzagen] #For later use
     for top in pizzagen:
         print(top)
