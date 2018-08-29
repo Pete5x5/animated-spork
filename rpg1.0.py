@@ -102,23 +102,23 @@ while True:
 
 if randsauce == '1':
     print('How many sauces are there to choose from?')
-while True:
-    allsauce = input()
-    try:
-         allsauce = int(allsauce)
-    except ValueError:
-        print('Invalid input')
-        continue
-    else:
-        if allsauce <= 1:
-            print('No need to randomize with only that many sauces to choose from')
-            randsauce = '2'
-            break
-        elif allsauce > 10:
-            print('That\'s too many sauces!')
-            continue 
+    while True:
+        allsauce = input()
+        try:
+            allsauce = int(allsauce)
+        except ValueError:
+            print('Invalid input')
+            continue
         else:
-            break
+            if allsauce <= 1:
+                print('No need to randomize with only that many sauces to choose from')
+                randsauce = '2'
+                break
+            elif allsauce > 10:
+                print('That\'s too many sauces!')
+                continue 
+            else:
+                break
 
 if randsauce == '1':
     saucelist = []
