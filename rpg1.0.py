@@ -90,7 +90,7 @@ while listcorrect < 1:  #Check topping list
     while True:
         listconfirm = input()
         if listconfirm == 'a':  #List is OK, move on
-            listcorrect == 1
+            listcorrect = 1
             break
         elif listconfirm == 'b':  #Get additional topping
             print('Please enter the additional topping now:')
@@ -112,15 +112,18 @@ while listcorrect < 1:  #Check topping list
                         continue
                     else:
                         break
-            ######
+            del toplist[removetop - 1]
+            break
         else:
             print('Invalid choice')
             continue
 
+alltops = len(toplist)
+
 if alltops >= tops:
-    print('''Would you like to allow duplicate toppings?
-    a - Yes, that is how the dice will it
-    b - No, triple olives is gross\n''')
+    print('''\nWould you like to allow duplicate toppings?
+        a - Yes, that is how the dice will it
+        b - No, triple olives is gross\n''')
 
     while True:
         dupetops = input()
@@ -133,8 +136,8 @@ else:
     dupetops == 'a'
 
 print('''Would you like to randomize the type of sauce for each pizza?
-a - Yes, true random is the only way
-b - No, I can only handle regular pizza sauce\n''')
+    a - Yes, true random is the only way
+    b - No, I can only handle regular pizza sauce\n''')
 
 while True:
     randsauce = input()
