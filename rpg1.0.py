@@ -1,4 +1,6 @@
 import random   #Enable random number functionality
+import os       #Enable filesystem functionality
+
 print('''RANDOM PIZZA GENERATOR
 As the dice will it, it shall be done
 
@@ -15,7 +17,7 @@ while True: #Get number of pizzas to be generated
         if pizzas < 1:  #Can't generate 0 pizzas..
             print('Not enough pizzas')
             continue
-        elif pizzas > 12:   #Cap on number of pizzas
+        elif pizzas > 24:   #Cap on number of pizzas
             print('That\'s too many pizzas!')
             continue
         else:
@@ -39,43 +41,75 @@ while True: #Get number of toppings per pizza
         else:
             break
 
-print('How many toppings are there to choose from?')
-while True: #Get total number of toppings to choose from
-    alltops = input()
+print('''Would you like to use an existing topping list?
+
+0 - Manually enter toppings''')
+lists = []
+toppath = os.path.join('topping-lists')
+
+for folderName, subfolders, filenames in os.walk(toppath):
+    for filename in filenames:
+        lists += [filename]
+        print(str(len(lists)) + ' - ' + filename)
+
+while True: #Get list selection
+    picklist = input()
     try:    #Make sure input is an int
-         alltops = int(alltops)
+         picklist = int(picklist)
     except ValueError:
         print('Invalid input')
         continue
     else:
-        if alltops <= 1:    #Can't have less than 1 topping
-            print('Not enough toppings')
+        if picklist < 0:    #No choice below 0
+            print('Invalid input')
             continue
-        elif alltops > 99:  #Cap on number of toppings
-            print('That\'s too many toppings!')
+        elif picklist > int(len(lists)):  #Limit to number of lists in folder
+            print('Invalid input')
             continue 
         else:
             break
+    
 
 toplist = []    #Set the variable type to list
 
 def topname():  #Function to get all possible toppings
-    global toplist #Use the global version of toplist (above)
-    while True:
-            currtop = input()
-            if len(currtop) > 50:   #Cap on number of characters in topping name
-                print('Topping name too long')
-                continue
-            elif currtop in toplist:    #Check for duplicate toppings in list
-                print('You already have that topping')
-                continue
-            else:
-                toplist += [currtop] #Add the topping to the list
-                break
+        global toplist #Use the global version of toplist (above)
+        while True:
+                currtop = input()
+                if len(currtop) > 50:   #Cap on number of characters in topping name
+                    print('Topping name too long')
+                    continue
+                elif currtop in toplist:    #Check for duplicate toppings in list
+                    print('You already have that topping')
+                    continue
+                else:
+                    toplist += [currtop] #Add the topping to the list
+                    break
 
-for iv1 in range(alltops): #User will enter all possible toppings
-    print('Enter topping number ' + str(iv1+1)) #Var starts counting at 0 so must add 1
-    topname()   #Function on line 62
+if picklist == 0:
+    print('How many toppings are there to choose from?')
+    while True: #Get total number of toppings to choose from
+        alltops = input()
+        try:    #Make sure input is an int
+            alltops = int(alltops)
+        except ValueError:
+            print('Invalid input')
+            continue
+        else:
+            if alltops <= 1:    #Can't have less than 1 topping
+                print('Not enough toppings')
+                continue
+            elif alltops > 99:  #Cap on number of toppings
+                print('That\'s too many toppings!')
+                continue 
+            else:
+                break
+    for iv1 in range(alltops): #User will enter all possible toppings
+        print('Enter topping number ' + str(iv1+1)) #Var starts counting at 0 so must add 1
+        topname()   #Function above
+else:
+    toppath2 = os.path.join('topping-lists', lists[picklist-1])
+    toplist=[line.strip() for line in open(toppath2)] #Import topping list and remove newlines
 
 listcorrect = 0
 
@@ -94,7 +128,7 @@ while listcorrect < 1:  #Check topping list
             break
         elif listconfirm == 'b':  #Get additional topping
             print('Please enter the additional topping now:')
-            topname()   #Function on line 62
+            topname()   #Function above
             break
         elif listconfirm == 'c':
             removetop = 0
