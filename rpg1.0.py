@@ -109,7 +109,9 @@ if picklist == 0:
         topname()   #Function above
 else:
     toppath2 = os.path.join('topping-lists', lists[picklist-1])
-    toplist=[line.strip() for line in open(toppath2)] #Import topping list and remove newlines
+    toplist = [line.strip() for line in open(toppath2)] #Import topping list and remove newlines
+    orderinfo = toplist[0]
+    del toplist[0]
 
 listcorrect = 0
 
@@ -235,3 +237,7 @@ for iv2 in range(pizzas):
     allpizzas += [pizzagen] #For later use
     for top in pizzagen:
         print(top)
+
+print('')
+print('Order info:')
+print(orderinfo)
